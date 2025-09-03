@@ -34,14 +34,6 @@ function AppContent() {
     { id: 9, name: 'Investment', type: 'income', color: '#8b5cf6' }
   ]);
 
-  if (loading) {
-    return <LoadingSpinner />;
-  }
-
-  if (!user) {
-    return <AuthPage />;
-  }
-
   // Load data from localStorage on component mount
   useEffect(() => {
     const savedTransactions = localStorage.getItem('financeTracker_transactions');
@@ -71,6 +63,14 @@ function AppContent() {
   useEffect(() => {
     localStorage.setItem('financeTracker_categories', JSON.stringify(categories));
   }, [categories]);
+
+  if (loading) {
+    return <LoadingSpinner />;
+  }
+
+  if (!user) {
+    return <AuthPage />;
+  }
 
   const addTransaction = (transaction) => {
     const newTransaction = {

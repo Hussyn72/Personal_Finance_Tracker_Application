@@ -147,6 +147,27 @@ const LoginForm = ({ onToggleForm }) => {
           </button>
         </form>
 
+        {/* Demo Credentials */}
+        <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+          <h4 className="text-sm font-semibold text-blue-800 mb-2">Demo Credentials</h4>
+          <div className="text-sm text-blue-700 space-y-1">
+            <p><strong>Email:</strong> demo@example.com</p>
+            <p><strong>Password:</strong> demo123</p>
+          </div>
+          <button
+            type="button"
+            onClick={() => {
+              setFormData({
+                email: 'demo@example.com',
+                password: 'demo123'
+              });
+            }}
+            className="mt-2 text-xs bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 transition-colors"
+          >
+            Use Demo Credentials
+          </button>
+        </div>
+
         <div className="mt-6 text-center">
           <p className="text-gray-600">
             Don't have an account?{' '}

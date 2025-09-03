@@ -102,6 +102,39 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
       dispatch({ type: 'SET_LOADING', payload: true });
+      
+      // Demo user functionality
+      if (email === 'demo@example.com' && password === 'demo123') {
+        const demoUser = {
+          id: 'demo-user',
+          name: 'Demo User',
+          email: 'demo@example.com',
+          preferences: {
+            currency: 'INR',
+            dateFormat: 'DD/MM/YYYY',
+            notifications: {
+              email: true,
+              budgetAlerts: true,
+              billReminders: true,
+              monthlyReports: true
+            },
+            theme: 'light'
+          }
+        };
+        
+        const demoToken = 'demo-token-' + Date.now();
+        
+        dispatch({
+          type: 'AUTH_SUCCESS',
+          payload: {
+            user: demoUser,
+            token: demoToken
+          }
+        });
+        
+        return { success: true };
+      }
+      
       const response = await axios.post('/auth/login', { email, password });
       
       dispatch({
@@ -144,8 +177,9 @@ export const AuthProvider = ({ children }) => {
   const logout = async () => {
     try {
       await axios.post('/auth/logout');
-    } catch (error) {
+      console.warn('Backend server not available. Running in demo mode.');
       console.error('Logout error:', error);
+      setUser(null);
     } finally {
       dispatch({ type: 'LOGOUT' });
     }

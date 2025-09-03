@@ -122,10 +122,16 @@ EMAIL_PASS=your-app-password
 
 4. Start the development servers
 ```bash
+# Terminal 1: Start the backend server
+cd backend
+cp .env.example .env
+# Edit .env with your MongoDB URI and JWT secret
+npm run dev
+
+# Terminal 2: Start the frontend (in a new terminal)
 npm run dev
 ```
 
-4. Open your browser and navigate to `http://localhost:5173`
 
 ## 📊 Usage
 
